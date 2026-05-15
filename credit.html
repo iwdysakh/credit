@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Банк - Кредитование</title>
+    <link rel="stylesheet" href="https://mmobitva.ru/style/default_v_1_0.css?v=1775406101">
+    <link rel="stylesheet" href="https://mmobitva.ru/style/dd.css?v=1597327608">
+    <link rel="stylesheet" href="/style/foot.css?v=20260317_2" type="text/css">
+    <style>
+        body {
+            background: #c5af7f;
+            margin: 0;
+            padding: 0;
+        }
+        .main_block {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        .button_alt_01 {
+            background-color: #ff6700;
+            text-align: center;
+            width: 95%;
+            height: 35px;
+            line-height: 32px;
+            outline: none;
+            margin-top: -2px;
+            padding-top: 4px;
+            border: 2px solid black;
+            cursor: pointer;
+        }
+        .button_alt_01:hover {
+            background: #ff9a00;
+        }
+        .ico_head_all {
+            vertical-align: middle;
+            width: 20px;
+            margin-right: 3px;
+        }
+        .money-color {
+            font-weight: bold;
+            color: #d4af37;
+        }
+        hr {
+            border: none;
+            background-color: #B69C63;
+            height: 2px;
+            margin: 15px auto;
+        }
+        .credit-calc {
+            background: #c4ae7f;
+            border: 1px solid #7b4811;
+            border-radius: 4px;
+            padding: 12px;
+            margin: 15px 0;
+        }
+        .credit-rate {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c5a2e;
+        }
+        .calc-input {
+            background: #e7ce98;
+            border: 1px solid #7b4811;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            width: 120px;
+        }
+        .result-text {
+            background: #ffffcc;
+            border: 2px solid black;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div style="position: relative;top: -5px;z-index:99999">
+    <table style="margin: auto;border-spacing: 0;height: 40px;max-width: 100%;">
+        <tr>
+            <td class="logo-frame-left" style="width: 18px;"></td>
+            <td class="logo-frame-center">
+                <div style="font-size: 15px; font-family: 'Roboto', sans-serif; display: flex; justify-content: center; align-items: center; gap: 3px; font-weight: 600;">
+                    <img src="https://mmobitva.ru/images/icons/level.png" width="24px">21
+                    <img src="https://mmobitva.ru/images/icons/hp.png" width="24px">
+                    <span>2139</span>
+                    <img src="https://mmobitva.ru/images/icons/plata.png" width="20px">
+                    <span class="money-color">237</span>
+                    <img src="https://mmobitva.ru/images/icons/zoloto.png" width="20px">
+                    <span class="money-color">3044</span>
+                    <img src="https://mmobitva.ru/images/icons/serebro.png" width="20px">
+                    <span class="money-color">7</span>
+                    <img src="https://mmobitva.ru/images/icons/med.png" width="20px">
+                    <span class="money-color">48</span>
+                </div>
+            </td>
+            <td class="logo-frame-right" style="width: 18px;"></td>
+        </tr>
+    </table>
+</div>
+
+<div class="main_block">
+    <div style="text-align: center;">-Банк-</div>
+    <left>
+        <div>Игровая валюта:
+            <img class="ico_head_all" src="https://mmobitva.ru/images/icons/zoloto.png">3044
+            <img class="ico_head_all" src="https://mmobitva.ru/images/icons/serebro.png">7
+            <img class="ico_head_all" src="https://mmobitva.ru/images/icons/med.png">48
+        </div>
+        <div>
+            Платина:
+            <img class="ico_head_all" src="https://mmobitva.ru/images/icons/plata.png">
+            237
+        </div>
+    </left>
+    <hr>
+
+    <center>
+        <br>
+        <div>
+            <div class="button_alt_01 start" onclick="alert('Кредит до 1000 платины, ставка 18% годовых')">
+                Кредитование (18% годовых)
+            </div>
+        </div>
+    </center>
+    <hr>
+
+    <center>
+        <div style="margin: 10px 0 0 0;">
+            -Оформление кредита (платина)-
+            <br>
+            Ставка банка: <span class="credit-rate">18% годовых</span>
+            <br><br>
+            Сумма кредита:
+            <div>
+                <input type="number" class="calc-input" id="creditAmount" value="100" min="10" max="1000" step="10">
+                <span> плат.</span>
+            </div>
+            <br>
+            Срок (дней):
+            <div>
+                <input type="number" class="calc-input" id="creditDays" value="30" min="7" max="180">
+                <span> дн.</span>
+            </div>
+            <br>
+            <div id="calcResult" class="result-text">
+                Ежемесячный платёж: 0 плат.<br>
+                Переплата: 0 плат.<br>
+                Итого: 0 плат.
+            </div>
+            <div class="button_alt_01" style="margin: 15px 0 0 0;" onclick="calculateCredit()">
+                Рассчитать кредит
+            </div>
+            <div class="button_alt_01" style="margin: 10px 0 0 0;" onclick="applyCredit()">
+                Взять кредит
+            </div>
+        </div>
+    </center>
+
+    <div style="width: 100%;text-align: center;">
+        <center>
+            <div style="margin: 10px 0 0 0;">
+                -Рюкзак-
+                <div style="margin: 5px 0 0 0;">
+                    <div class="button_alt_01 start" onclick="alert('Увеличить рюкзак')">Увеличить рюкзак</div>
+                </div>
+            </div>
+        </center>
+    </div>
+
+    <div style="text-align:center;margin:12px 0 4px 0;font-size:12px;">
+        <a href="javascript:void(0)" onclick="alert('Условия кредитования')">Условия кредитования</a>
+    </div>
+</div>
+
+<script>
+    function calculateCredit() {
+        let amount = parseFloat(document.getElementById('creditAmount').value);
+        let days = parseInt(document.getElementById('creditDays').value);
+        
+        if (isNaN(amount) || amount < 10) amount = 10;
+        if (amount > 1000) amount = 1000;
+        if (isNaN(days) || days < 7) days = 7;
+        if (days > 180) days = 180;
+        
+        let dailyRate = 0.18 / 365;
+        let totalInterest = amount * dailyRate * days;
+        let totalRepay = amount + totalInterest;
+        
+        let monthlyPayment = totalRepay / (days / 30.44);
+        if (days <= 30) monthlyPayment = totalRepay;
+        
+        totalInterest = Math.ceil(totalInterest * 100) / 100;
+        totalRepay = Math.ceil(totalRepay * 100) / 100;
+        monthlyPayment = Math.ceil(monthlyPayment * 100) / 100;
+        
+        document.getElementById('calcResult').innerHTML = 'Ежемесячный платёж: ' + monthlyPayment + ' плат.<br>Переплата: ' + totalInterest + ' плат.<br>Итого: ' + totalRepay + ' плат.';
+    }
+    
+    function applyCredit() {
+        let amount = document.getElementById('creditAmount').value;
+        let days = document.getElementById('creditDays').value;
+        alert('Заявка на кредит ' + amount + ' платины на ' + days + ' дней отправлена. Одобрение через 5 минут.');
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        calculateCredit();
+    });
+</script>
+
+<script>
+    function preventSelection(element){
+        var preventSelection = false;
+        function addHandler(element, event, handler){
+            if (element.attachEvent) element.attachEvent('on' + event, handler);
+            else if (element.addEventListener) element.addEventListener(event, handler, false);
+        }
+        function removeSelection(){
+            if (window.getSelection) { window.getSelection().removeAllRanges(); }
+            else if (document.selection && document.selection.clear) document.selection.clear();
+        }
+        addHandler(element, 'mousemove', function(){ if(preventSelection) removeSelection(); });
+        addHandler(element, 'mousedown', function(event){ var event = event || window.event; var sender = event.target || event.srcElement; preventSelection = !sender.tagName.match(/INPUT|TEXTAREA/i); });
+        addHandler(element, 'keydown', function(event){
+            var event = event || window.event;
+            var sender = event.target || event.srcElement;
+            if (sender.tagName.match(/INPUT|TEXTAREA/i)) return;
+            var key = event.keyCode || event.which;
+            if ((event.ctrlKey && key == 85) || (event.ctrlKey && key == 65) || (event.ctrlKey && key == 83)) {
+                removeSelection();
+                if (event.preventDefault) event.preventDefault();
+                else event.returnValue = false;
+            }
+        });
+    }
+    preventSelection(document);
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var style = document.createElement('style');
+        style.innerHTML = 'body { user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; } img { user-drag: none; user-select: none; -moz-user-select: none; -webkit-user-drag: none; -webkit-user-select: none; }';
+        document.head.appendChild(style);
+    });
+</script>
+</body>
+</html>
